@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>墨梦轩 · 解梦手账</title>
+  <meta name="description" content="以现代心理学解梦：梦境词典、梦境手账、每日一签。落墨为记，梦不自解。" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 宣纸底 -->
+  <div class="paper-grain" aria-hidden="true"></div>
+
+  <!-- ═══ 卷首：竖排题字 ═══ -->
+  <header class="scroll-head">
+    <div class="title-col">
+      <h1>墨梦轩</h1>
+      <span class="sub-col">梦 者 心 之 潮 汐</span>
+    </div>
+    <div class="seal">解梦</div>
+  </header>
+
+  <!-- ═══ 今日梦签 ═══ -->
+  <section class="dream-lot">
+    <p class="lot-label">— 今 日 梦 签 —</p>
+    <blockquote class="lot-text" id="lotText">抽签中…</blockquote>
+    <p class="lot-note" id="lotNote"></p>
+  </section>
+
+  <!-- ═══ 梦境词典 ═══ -->
+  <section class="lexicon">
+    <h2 class="sec-title">梦 境 词 典</h2>
+    <div class="ink-bar">
+      <input id="lexInput" placeholder="墨迹未干 · 输入梦中意象，如：掉牙、飞行、被追…" />
+    </div>
+    <div class="entries" id="entries"></div>
+    <p class="empty-ink" id="emptyTip" hidden>未寻到此梦 —— 换个意象试试，或记入手账</p>
+  </section>
+
+  <!-- ═══ 梦境手账 ═══ -->
+  <section class="journal">
+    <h2 class="sec-title">昨 夜 手 账</h2>
+    <div class="ink-bar area">
+      <textarea id="jrInput" rows="3" placeholder="昨夜梦见了什么？趁墨迹未散，写下来……"></textarea>
+    </div>
+    <div class="jr-row">
+      <select id="jrMood">
+        <option value="静">醒来 · 内心平静</option>
+        <option value="惊">醒来 · 心有余悸</option>
+        <option value="喜">醒来 · 意犹未尽</option>
+        <option value="惑">醒来 · 一头雾水</option>
+      </select>
+      <button class="stamp-btn" id="jrSave">落 墨</button>
+    </div>
+    <div class="jr-list" id="jrList"></div>
+    <p class="empty-ink" id="jrEmpty">手账尚是空白 · 等第一夜梦来</p>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

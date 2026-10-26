@@ -1,0 +1,247 @@
+/* ═════════════════════════════════════════════
+   墨梦轩 · 水墨宣纸解梦手账
+   ═════════════════════════════════════════════ */
+:root {
+  --paper: #f2ead8;
+  --paper-2: #ece2cb;
+  --ink: #2f2a25;
+  --ink-2: #5b5248;
+  --ink-3: #8d8272;
+  --cinnabar: #b03528;
+  --faint: rgba(47, 42, 37, 0.06);
+  --kai: "KaiTi", "STKaiti", "楷体", serif;
+  --song: "STSong", "SimSun", "宋体", serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--song);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.9;
+  min-height: 100vh;
+  padding: 30px 18px 60px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* 宣纸纤维 */
+.paper-grain {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(ellipse at 18% 12%, rgba(139, 118, 82, 0.07) 0%, transparent 46%),
+    radial-gradient(ellipse at 82% 78%, rgba(139, 118, 82, 0.08) 0%, transparent 42%),
+    repeating-linear-gradient(93deg, transparent 0 140px, rgba(90, 74, 48, 0.025) 140px 142px);
+}
+section, header, footer { position: relative; z-index: 1; }
+
+/* ═══ 卷首 ═══ */
+.scroll-head {
+  display: flex; justify-content: flex-start; gap: 26px;
+  padding: 26px 8px 34px;
+  border-bottom: none;
+  position: relative;
+}
+/* 毛笔横抹 */
+.scroll-head::after {
+  content: ""; position: absolute; left: -18px; right: -18px; bottom: 12px;
+  height: 14px;
+  background: linear-gradient(90deg,
+    transparent 0%, rgba(47, 42, 37, 0.16) 12%,
+    rgba(47, 42, 37, 0.28) 40%,
+    rgba(47, 42, 37, 0.12) 72%, transparent 100%);
+  border-radius: 50% / 100%;
+  filter: blur(1px);
+  transform: rotate(-0.4deg);
+}
+.title-col { display: flex; gap: 14px; }
+h1 {
+  writing-mode: vertical-rl;
+  font-family: var(--kai);
+  font-size: clamp(44px, 10vw, 64px);
+  letter-spacing: 14px; line-height: 1;
+  color: var(--ink);
+  text-shadow: 1px 1px 0 rgba(47, 42, 37, 0.12);
+}
+.sub-col {
+  writing-mode: vertical-rl;
+  font-family: var(--kai); font-size: 14px;
+  letter-spacing: 10px; color: var(--ink-3);
+  padding-top: 8px;
+}
+
+/* 朱砂印 */
+.seal {
+  margin-left: auto; align-self: flex-start;
+  width: 58px; height: 58px;
+  display: grid; place-items: center;
+  font-family: var(--kai); font-size: 20px; font-weight: 700;
+  color: #fff; letter-spacing: 2px;
+  writing-mode: vertical-rl;
+  background: var(--cinnabar);
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(176, 53, 40, 0.4);
+  transform: rotate(3deg);
+  opacity: 0.92;
+}
+
+/* ═══ 今日梦签 ═══ */
+.dream-lot {
+  margin: 34px 0 44px;
+  padding: 26px 24px;
+  background: rgba(255, 253, 246, 0.55);
+  border: 1px solid rgba(47, 42, 37, 0.14);
+  box-shadow: 2px 3px 0 var(--faint);
+  text-align: center;
+  position: relative;
+}
+.dream-lot::before {
+  content: "❋"; position: absolute; top: -14px; left: 50%;
+  transform: translateX(-50%);
+  color: var(--ink-3); background: var(--paper); padding: 0 10px;
+}
+.lot-label { font-family: var(--kai); letter-spacing: 8px; font-size: 13px; color: var(--ink-2); }
+.lot-text {
+  font-family: var(--kai); font-size: 22px; line-height: 1.8;
+  color: var(--ink); margin: 14px 0 10px;
+}
+.lot-note { font-size: 12.5px; color: var(--ink-3); }
+
+/* ═══ 区题 ═══ */
+.sec-title {
+  font-family: var(--kai);
+  font-size: 20px; letter-spacing: 10px;
+  color: var(--ink);
+  text-align: center; margin-bottom: 22px;
+  position: relative;
+}
+.sec-title::before, .sec-title::after {
+  content: ""; display: inline-block; vertical-align: middle;
+  width: 52px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ink-3));
+  margin: 0 14px;
+}
+.sec-title::after { background: linear-gradient(90deg, var(--ink-3), transparent); }
+
+/* ═══ 词典 ═══ */
+.lexicon { margin-bottom: 50px; }
+.ink-bar {
+  position: relative; margin-bottom: 20px;
+}
+#lexInput, #jrInput {
+  width: 100%;
+  font-family: var(--kai); font-size: 16px;
+  color: var(--ink);
+  background: rgba(255, 253, 246, 0.7);
+  border: none; border-bottom: 2px solid rgba(47, 42, 37, 0.3);
+  padding: 10px 6px; outline: none;
+  transition: border-color 0.3s;
+}
+#lexInput:focus, #jrInput:focus { border-bottom-color: var(--cinnabar); }
+#lexInput::placeholder, #jrInput::placeholder { color: var(--ink-3); }
+
+.ink-bar.area #jrInput {
+  resize: vertical; min-height: 84px;
+  border: 1px solid rgba(47, 42, 37, 0.22);
+  border-radius: 3px;
+  padding: 12px 14px;
+}
+
+/* 词条 */
+.entry {
+  padding: 18px 6px 16px;
+  border-bottom: 1px dashed rgba(47, 42, 37, 0.22);
+  animation: fadein 0.4s ease;
+}
+@keyframes fadein { from { opacity: 0; transform: translateY(8px); } }
+.entry-term {
+  font-family: var(--kai); font-size: 19px; color: var(--ink);
+  margin-bottom: 6px;
+}
+.entry-term small {
+  font-family: var(--song); font-size: 11.5px;
+  color: var(--cinnabar); letter-spacing: 2px; margin-left: 12px;
+}
+.entry-text { font-size: 14px; color: var(--ink-2); text-align: justify; }
+.entry-ask {
+  margin-top: 8px; font-size: 12.5px; color: var(--ink-3);
+  font-family: var(--kai);
+}
+.entry-ask::before { content: "问心："; color: var(--cinnabar); }
+
+.empty-ink {
+  text-align: center; font-family: var(--kai);
+  color: var(--ink-3); font-size: 13.5px;
+  padding: 18px 0; letter-spacing: 2px;
+}
+
+/* ═══ 手账 ═══ */
+.journal { margin-bottom: 40px; }
+.jr-row { display: flex; gap: 14px; margin-bottom: 22px; align-items: center; }
+#jrMood {
+  flex: 1;
+  font-family: var(--kai); font-size: 14px;
+  color: var(--ink); background: rgba(255, 253, 246, 0.7);
+  border: 1px solid rgba(47, 42, 37, 0.22);
+  padding: 8px 10px; outline: none;
+}
+.stamp-btn {
+  font-family: var(--kai); font-size: 15px; letter-spacing: 6px;
+  color: #fff; background: var(--cinnabar);
+  border: none; padding: 9px 22px 9px 28px;
+  border-radius: 4px; cursor: pointer;
+  box-shadow: 0 2px 0 rgba(140, 40, 30, 0.5);
+  transition: transform 0.15s;
+}
+.stamp-btn:active { transform: translateY(2px); box-shadow: none; }
+
+/* 手账条目：竖排感装饰行 */
+.jr-item {
+  position: relative;
+  padding: 14px 14px 12px 56px;
+  background: rgba(255, 253, 246, 0.5);
+  border-left: 3px solid rgba(47, 42, 37, 0.25);
+  margin-bottom: 12px;
+  animation: fadein 0.4s ease;
+}
+.jr-item .jr-date {
+  position: absolute; left: 12px; top: 12px;
+  writing-mode: vertical-rl;
+  font-family: var(--kai); font-size: 11.5px;
+  color: var(--ink-3); letter-spacing: 3px;
+}
+.jr-item .jr-mood {
+  display: inline-block;
+  font-family: var(--kai); font-size: 12px;
+  color: var(--cinnabar);
+  border: 1px solid rgba(176, 53, 40, 0.4);
+  padding: 1px 8px; border-radius: 2px;
+  margin-bottom: 6px;
+}
+.jr-item p { font-size: 14px; color: var(--ink-2); }
+.jr-del {
+  position: absolute; right: 10px; top: 10px;
+  background: none; border: none; cursor: pointer;
+  font-family: var(--kai); font-size: 13px;
+  color: var(--ink-3); transition: color 0.2s;
+}
+.jr-del:hover { color: var(--cinnabar); }
+
+/* 墨点 toast */
+.toast {
+  position: fixed; left: 50%; bottom: 36px;
+  transform: translateX(-50%) translateY(12px);
+  font-family: var(--kai); font-size: 14px; letter-spacing: 3px;
+  color: var(--paper); background: var(--ink);
+  padding: 10px 26px; border-radius: 999px;
+  opacity: 0; pointer-events: none;
+  transition: all 0.3s; z-index: 20;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 480px) {
+  .scroll-head { gap: 16px; }
+  .seal { width: 46px; height: 46px; font-size: 16px; }
+  .jr-row { flex-direction: column; align-items: stretch; }
+}
